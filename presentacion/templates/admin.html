@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Café Overflow — Panel Administrativo</title>
+<link rel="stylesheet" href="/static/css/estilos.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="logo"><span class="taza">🛠️</span> Café Overflow <span class="subtitulo">// Panel administrativo</span></div>
+  <nav>
+    <a href="/">Vista cliente</a>
+  </nav>
+</header>
+
+<main class="contenedor">
+
+  <div class="tabs">
+    <button class="activo" data-pestana="tab-productos">Productos e inventario</button>
+    <button data-pestana="tab-clientes">Clientes</button>
+    <button data-pestana="tab-pedidos">Pedidos</button>
+  </div>
+
+  <!-- ---------------- Productos ---------------- -->
+  <section class="pestana activa" id="tab-productos">
+    <div class="dos-columnas">
+      <div>
+        <h2>Catálogo de productos</h2>
+        <div style="overflow-x:auto;">
+          <table>
+            <thead>
+              <tr><th>ID</th><th>Nombre</th><th>Precio</th><th>Stock</th><th>Activo</th><th>Acciones</th></tr>
+            </thead>
+            <tbody id="cuerpo-tabla-productos"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="panel">
+        <h3 id="titulo-form-producto">Nuevo producto</h3>
+        <form id="form-producto">
+          <label for="prod-nombre">Nombre</label>
+          <input type="text" id="prod-nombre" required placeholder="Espresso StackTrace" />
+          <label for="prod-precio">Precio base (COP)</label>
+          <input type="number" id="prod-precio" min="0" required />
+          <label for="prod-stock">Stock inicial</label>
+          <input type="number" id="prod-stock" min="0" required />
+          <label><input type="checkbox" id="prod-activo" checked style="width:auto;display:inline-block;margin-right:0.4rem;" /> Producto activo</label>
+          <button type="submit" id="btn-guardar-producto">Crear producto</button>
+          <button type="button" id="btn-cancelar-edicion" class="secundario oculto">Cancelar edición</button>
+        </form>
+        <p class="texto-apagado">Para cambiar el stock de un producto existente usa el campo "±stock" en la tabla (ajuste de inventario), no el formulario de edición.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------------- Clientes ---------------- -->
+  <section class="pestana" id="tab-clientes">
+    <div class="dos-columnas">
+      <div>
+        <h2>Clientes registrados</h2>
+        <div style="overflow-x:auto;">
+          <table>
+            <thead>
+              <tr><th>ID</th><th>Nombre</th><th>Correo</th><th>Nivel</th><th>DevPoints</th><th>Acumulado</th></tr>
+            </thead>
+            <tbody id="cuerpo-tabla-clientes"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Registrar cliente</h3>
+        <form id="form-cliente-admin">
+          <label for="cliente-admin-nombre">Nombre</label>
+          <input type="text" id="cliente-admin-nombre" required />
+          <label for="cliente-admin-correo">Correo</label>
+          <input type="email" id="cliente-admin-correo" required />
+          <button type="submit">Registrar</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------------- Pedidos ---------------- -->
+  <section class="pestana" id="tab-pedidos">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <h2>Pedidos</h2>
+      <button id="btn-actualizar-pedidos-admin" class="secundario pequeno">Actualizar</button>
+    </div>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Cliente</th><th>Tipo</th><th>Ítems</th><th>Total</th><th>Estado</th><th>Acción</th></tr>
+        </thead>
+        <tbody id="cuerpo-tabla-pedidos"></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer>Café Overflow — Dev &amp; Coffee Lounge · Taller Arquitectura N-Tier · UNAB</footer>
+
+<script src="/static/js/api.js"></script>
+<script src="/static/js/admin.js"></script>
+</body>
+</html>

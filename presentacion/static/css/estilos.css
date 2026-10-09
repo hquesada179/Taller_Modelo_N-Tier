@@ -1,0 +1,416 @@
+/* ============================================================
+   Café Overflow — Dev & Coffee Lounge
+   Hoja de estilos única (CSS3 nativo, sin frameworks)
+   ============================================================ */
+
+:root {
+  --cafe-oscuro: #3b2415;
+  --cafe-medio: #6f4e37;
+  --cafe-claro: #a9795c;
+  --crema: #f5ebdd;
+  --crema-suave: #fbf6ee;
+  --azul-oscuro: #1b2a4a;
+  --azul-medio: #2d4373;
+  --acento: #e8a33d;
+  --exito: #2e7d4f;
+  --exito-bg: #e5f5ea;
+  --error: #b3331d;
+  --error-bg: #fbe7e3;
+  --advertencia: #9c6b11;
+  --advertencia-bg: #fdf0d5;
+  --sombra: 0 4px 14px rgba(59, 36, 21, 0.18);
+  --radio: 14px;
+  --fuente: "Segoe UI", "Trebuchet MS", Verdana, sans-serif;
+  --fuente-mono: "Consolas", "Courier New", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.oculto {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fuente);
+  background: linear-gradient(180deg, var(--crema-suave) 0%, var(--crema) 100%);
+  color: var(--cafe-oscuro);
+  min-height: 100vh;
+}
+
+a {
+  color: var(--azul-medio);
+}
+
+/* ---------------- Barra superior ---------------- */
+.topbar {
+  background: linear-gradient(135deg, var(--azul-oscuro), var(--cafe-oscuro));
+  color: var(--crema);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--sombra);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.topbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.topbar .logo .taza {
+  font-size: 1.6rem;
+}
+
+.topbar .subtitulo {
+  font-size: 0.8rem;
+  opacity: 0.85;
+  font-family: var(--fuente-mono);
+}
+
+.topbar nav a {
+  color: var(--crema);
+  text-decoration: none;
+  margin-left: 1rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(245, 235, 221, 0.3);
+}
+
+.topbar nav a:hover {
+  background: rgba(245, 235, 221, 0.15);
+}
+
+/* ---------------- Layout general ---------------- */
+.contenedor {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.seccion {
+  margin-bottom: 2rem;
+}
+
+.seccion h2 {
+  color: var(--cafe-oscuro);
+  border-bottom: 3px solid var(--acento);
+  display: inline-block;
+  padding-bottom: 0.2rem;
+  margin-bottom: 1rem;
+}
+
+.rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.1rem;
+}
+
+.panel {
+  background: #fff;
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 1.25rem;
+}
+
+.dos-columnas {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .dos-columnas {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------- Tarjetas de producto ---------------- */
+.tarjeta-producto {
+  background: #fff;
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 1px solid rgba(111, 78, 55, 0.12);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tarjeta-producto:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(59, 36, 21, 0.22);
+}
+
+.tarjeta-producto .icono {
+  font-size: 2rem;
+}
+
+.tarjeta-producto h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--cafe-oscuro);
+}
+
+.tarjeta-producto .precio {
+  font-weight: 700;
+  color: var(--azul-medio);
+  font-family: var(--fuente-mono);
+}
+
+.tarjeta-producto .stock {
+  font-size: 0.8rem;
+  color: var(--cafe-claro);
+}
+
+.tarjeta-producto .stock.bajo {
+  color: var(--error);
+  font-weight: 600;
+}
+
+.tarjeta-producto .fila-cantidad {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.tarjeta-producto input[type="number"] {
+  width: 64px;
+}
+
+/* ---------------- Formularios ---------------- */
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--cafe-medio);
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  border: 1.5px solid rgba(111, 78, 55, 0.3);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  margin-bottom: 0.9rem;
+  background: var(--crema-suave);
+  color: var(--cafe-oscuro);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--acento);
+  border-color: var(--acento);
+}
+
+.campo-en-linea {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.campo-en-linea > div {
+  flex: 1;
+}
+
+/* ---------------- Botones ---------------- */
+button, .boton {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  background: var(--cafe-medio);
+  color: #fff;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+button:hover, .boton:hover {
+  background: var(--cafe-oscuro);
+}
+
+button:active, .boton:active {
+  transform: scale(0.97);
+}
+
+button.secundario {
+  background: var(--azul-medio);
+}
+
+button.secundario:hover {
+  background: var(--azul-oscuro);
+}
+
+button.peligro {
+  background: var(--error);
+}
+
+button.pequeno {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+}
+
+button:disabled {
+  background: #b8b0a6;
+  cursor: not-allowed;
+}
+
+/* ---------------- Carrito ---------------- */
+.carrito-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed rgba(111, 78, 55, 0.25);
+  font-size: 0.9rem;
+}
+
+.carrito-resumen {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 2px solid var(--cafe-claro);
+  font-family: var(--fuente-mono);
+}
+
+.carrito-resumen .linea {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+}
+
+.carrito-resumen .total {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--cafe-oscuro);
+}
+
+/* ---------------- Badges de estado ---------------- */
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.badge.PENDING_PAYMENT { background: var(--advertencia-bg); color: var(--advertencia); }
+.badge.IN_PREPARATION  { background: #e3eafc; color: var(--azul-medio); }
+.badge.READY           { background: #fde9d0; color: #a35c00; }
+.badge.DELIVERED       { background: var(--exito-bg); color: var(--exito); }
+
+.badge.JUNIOR { background: #eee; color: #555; }
+.badge.MID    { background: #e3eafc; color: var(--azul-medio); }
+.badge.SENIOR { background: #fdeccb; color: #8a5a00; }
+
+/* ---------------- Tablas (admin) ---------------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: var(--radio);
+  overflow: hidden;
+  box-shadow: var(--sombra);
+}
+
+th, td {
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(111, 78, 55, 0.12);
+  font-size: 0.88rem;
+}
+
+th {
+  background: var(--cafe-oscuro);
+  color: var(--crema);
+  font-weight: 600;
+}
+
+tr:hover td {
+  background: var(--crema-suave);
+}
+
+/* ---------------- Mensajes / toasts ---------------- */
+#zona-mensajes {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 320px;
+}
+
+.mensaje {
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  box-shadow: var(--sombra);
+  font-size: 0.88rem;
+  animation: aparecer 0.2s ease;
+}
+
+.mensaje.exito { background: var(--exito-bg); color: var(--exito); border-left: 4px solid var(--exito); }
+.mensaje.error { background: var(--error-bg); color: var(--error); border-left: 4px solid var(--error); }
+.mensaje.info  { background: #e3eafc; color: var(--azul-medio); border-left: 4px solid var(--azul-medio); }
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ---------------- Tabs (admin) ---------------- */
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.tabs button {
+  background: var(--crema-suave);
+  color: var(--cafe-oscuro);
+  border: 1.5px solid var(--cafe-claro);
+}
+
+.tabs button.activo {
+  background: var(--cafe-oscuro);
+  color: var(--crema);
+}
+
+.pestana {
+  display: none;
+}
+
+.pestana.activa {
+  display: block;
+}
+
+.texto-apagado {
+  color: #8a8075;
+  font-size: 0.85rem;
+}
+
+.chip-lealtad {
+  font-family: var(--fuente-mono);
+  font-size: 0.8rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--cafe-claro);
+  font-size: 0.8rem;
+}

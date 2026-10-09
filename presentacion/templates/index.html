@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Café Overflow — Dev & Coffee Lounge</title>
+<link rel="stylesheet" href="/static/css/estilos.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="logo"><span class="taza">☕</span> Café Overflow <span class="subtitulo">// Dev &amp; Coffee Lounge</span></div>
+  <nav>
+    <a href="/">Menú</a>
+    <a href="/admin">Panel administrativo</a>
+  </nav>
+</header>
+
+<main class="contenedor">
+
+  <!-- ---------------- Identificación de cliente ---------------- -->
+  <section class="seccion" id="panel-identificacion">
+    <h2>Identifícate</h2>
+    <div class="dos-columnas">
+      <div class="panel">
+        <form id="form-identificar">
+          <label for="input-correo-identificar">Correo electrónico</label>
+          <input type="email" id="input-correo-identificar" required placeholder="dev@cafeoverflow.com" />
+          <button type="submit">Ingresar</button>
+        </form>
+      </div>
+      <div class="panel">
+        <p class="texto-apagado">¿Primera vez en Café Overflow? Ingresa tu correo y te ayudamos a crear tu cuenta DevCoffee automáticamente.</p>
+      </div>
+    </div>
+
+    <form id="form-registrar" class="panel oculto" style="margin-top:1rem;">
+      <h3>Crear cuenta DevCoffee</h3>
+      <label for="input-nombre-registrar">Nombre</label>
+      <input type="text" id="input-nombre-registrar" required placeholder="Ada Lovelace" />
+      <label for="input-correo-registrar">Correo electrónico</label>
+      <input type="email" id="input-correo-registrar" required />
+      <button type="submit">Crear cuenta</button>
+    </form>
+  </section>
+
+  <!-- ---------------- Panel del cliente identificado ---------------- -->
+  <section class="seccion panel oculto" id="panel-cliente">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;">
+      <div>
+        <h2 style="border:none;">Hola, <span id="txt-nombre-cliente"></span> 👋</h2>
+        <p class="texto-apagado" id="txt-correo-cliente"></p>
+      </div>
+      <div style="text-align:right;">
+        <p>Nivel: <span id="badge-nivel" class="badge"></span></p>
+        <p class="chip-lealtad">DevPoints: <strong id="txt-devpoints"></strong></p>
+        <p class="chip-lealtad">Acumulado histórico: <strong id="txt-acumulado"></strong></p>
+        <button id="btn-cerrar-sesion" class="secundario pequeno">Cerrar sesión</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------------- Menú ---------------- -->
+  <section class="seccion">
+    <h2>Menú</h2>
+    <div class="rejilla" id="rejilla-productos"></div>
+  </section>
+
+  <!-- ---------------- Pedido ---------------- -->
+  <section class="seccion oculto" id="seccion-pedido">
+    <h2>Tu pedido</h2>
+    <div class="dos-columnas">
+      <div class="panel">
+        <div id="carrito-lista"></div>
+        <p class="texto-apagado oculto" id="carrito-vacio">Tu carrito está vacío. Agrega productos del menú.</p>
+        <div class="carrito-resumen">
+          <div class="linea"><span>Subtotal estimado</span><span id="txt-subtotal-estimado">$0</span></div>
+          <p class="texto-apagado">* El descuento por nivel y por DevPoints lo calcula y confirma el servidor al registrar el pedido.</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <form id="form-pedido">
+          <label for="tipo-pedido">Tipo de pedido</label>
+          <select id="tipo-pedido">
+            <option value="LLEVAR">Para llevar</option>
+            <option value="MESA">Consumo en mesa</option>
+          </select>
+
+          <div id="campo-mesa" class="oculto">
+            <label for="input-mesa">Número de mesa</label>
+            <input type="number" id="input-mesa" min="1" placeholder="Ej: 5" />
+          </div>
+
+          <label for="input-puntos">DevPoints a redimir (1 pto = $200)</label>
+          <input type="number" id="input-puntos" min="0" value="0" />
+
+          <p class="texto-apagado oculto" id="aviso-pedido-pendiente">
+            ⚠️ Ya tienes un pedido pendiente de pago. Debes esperar a que avance antes de crear uno nuevo.
+          </p>
+
+          <button type="submit">Confirmar pedido</button>
+        </form>
+
+        <div class="carrito-resumen oculto" id="resultado-pedido"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------------- Mis pedidos ---------------- -->
+  <section class="seccion oculto" id="seccion-mis-pedidos">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <h2>Mis pedidos</h2>
+      <button id="btn-actualizar-pedidos" class="secundario pequeno">Actualizar</button>
+    </div>
+    <div id="lista-mis-pedidos"></div>
+  </section>
+
+</main>
+
+<footer>Café Overflow — Dev &amp; Coffee Lounge · Taller Arquitectura N-Tier · UNAB</footer>
+
+<script src="/static/js/api.js"></script>
+<script src="/static/js/cliente.js"></script>
+</body>
+</html>
